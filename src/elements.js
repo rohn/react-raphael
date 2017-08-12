@@ -136,6 +136,21 @@ class Element extends React.Component{
     }
 }
 
+Element.propTypes = {
+    animate: PropTypes.oneOfType([
+        PropTypes.shape({
+            anim: PropTypes.shape({
+                transform: PropTypes.string
+            }),
+            ms: PropTypes.number,
+            percents: PropTypes.array,
+            times: PropTypes.number
+        }),
+        PropTypes.string
+    ]),
+    stop: PropTypes.bool
+};
+
 class Circle extends React.Component{
     getElement() { return this.refs.element.getElement();  }
     render(){ return (<Element ref="element" type="circle" {...this.props} />); }
@@ -187,7 +202,23 @@ class Text extends React.Component{
     getElement() { return this.refs.element.getElement();  }
     render(){ return (<Element ref="element" type="text" {...this.props} />); }
 }
-Text.propTypes = { x: PropTypes.number, y: PropTypes.number, text: PropTypes.string };
+Text.propTypes = {
+    x: PropTypes.number,
+    y: PropTypes.number,
+    text: PropTypes.string,
+    animate: PropTypes.oneOfType([
+        PropTypes.shape({
+            anim: PropTypes.shape({
+                transform: PropTypes.string
+            }),
+            ms: PropTypes.number,
+            percents: PropTypes.array,
+            times: PropTypes.number
+        }),
+        PropTypes.string
+    ]),
+    stop: PropTypes.bool
+};
 Text.defaultProps = { x: 0, y: 0, text: "" };
 
 class Line extends React.Component{
